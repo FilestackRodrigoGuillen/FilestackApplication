@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-image: url('../img/pattern.webp');
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    font-size: 30px;
+  }
+
+  ul img {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  
+  li a.active {
+    background-color: white;
+    color: black;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  .module{
+    margin-left:25%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .container{
+    max-width: 700px;
+    width: 100%;
+    background-color: #432f3f;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    border: 1px solid black;
+  }
+  .container .title{
+    font-size: 25px;
+    font-weight: 500;
+    background-color: #FFFFFF;
+    color: black;
+    border-radius: 4px 4px 0 0;
+  }
+  
+  .content{
+      margin-right: 25px;
+      margin-left: 25px;
+      padding-left: 15px;
+      padding-right: 15px;
+      color: #FFFFFF
+  }
+  
+  .content form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 20px 20px 0;
+  }
+  form .user-details .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+  }
+
+  form .divisionform{
+    margin: 20px 20px 20px 0;
+  }
+
+  form .input-box span.details{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+  }
+  .input-box input:focus,
+  .input-box input:valid{
+    border-color: #ee4e25;
+  }
+  
+  input[type="radio"]{
+      accent-color: #ee4e25;
+  }
+  
+   form .button{
+     height: 45px;
+     margin: 35px 0
+   }
+
+   select {
+    height: 100%;
+     width: 100%;
+     border-radius: 5px;
+     border: none;
+     color: #fff;
+     font-size: 18px;
+     font-weight: 500;
+     letter-spacing: 1px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     background: gray;
+   }
+
+   form .button input{
+     height: 100%;
+     width: 100%;
+     border-radius: 5px;
+     border: none;
+     color: #fff;
+     font-size: 18px;
+     font-weight: 500;
+     letter-spacing: 1px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     background: #ee4e25;
+   }
