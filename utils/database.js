@@ -40,6 +40,7 @@ class database{
                 query += value+',';
             }
         }
+        
         query = query.slice(0,-1);
         query += ')'
         console.log(query);
