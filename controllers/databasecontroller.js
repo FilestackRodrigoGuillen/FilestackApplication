@@ -18,7 +18,6 @@ var controller = {
         var response = connection.insert(user).then((result) => {
             return res.status(200).send(result);
         });
-        
         //connection.update(user,"name","user_id");
         //database.create();
         
