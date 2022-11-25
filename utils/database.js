@@ -87,6 +87,7 @@ class database{
             }
         })
     }
+    
 
     //DELETE OBJECT
     delete(object,key){
