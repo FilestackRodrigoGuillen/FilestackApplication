@@ -3,6 +3,7 @@ var database = require("../utils/database");
 var userModel = require("../models/user");
 const { response } = require("express");
 
+
 var controller = {
     registeruser :(req,res) => {
         var connection = new database();
