@@ -11,6 +11,9 @@ var controller = {
     },
     returncompany:(req,res) => {
         return res.status(200).sendFile(path.resolve(__dirname,'../public/templates/company.html'));
+    },
+    returnworker:(requ,res) => {
+        return res.status(200).sendFile(path.resolve(__dirname,'../public/templates/worker.html'));
     }
 }
 

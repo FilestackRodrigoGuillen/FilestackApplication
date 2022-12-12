@@ -10,87 +10,21 @@
 
         <ul>
             <img src="./img/filestack.png">
-            <li><a href="#profile" id="profiletab">Company Profile</a></li>
+            <li><a href="#profile" id="profiletab">Worker Profile</a></li>
             <li><a href="#joboffer" id="joboffertab">Job Offers</a></li>
-            <li><a class="active" href="#newoffer" id="newoffertab">Offer new Job</a></li>
             <li><a href="#contact" id="contacttab">Contact</a></li>
             <li><a href="#about" id="abouttab">About</a></li>
         </ul>
 
-        <!--STARTS OFFEER NEW JOB MODULE-->
-        <div class="module" style="margin-left:25%;padding:1px 16px; display:flex" id="jobmodule">
-            <div class="container">
-                <div class="title">JOB OFFER</div>
-                <div class="content">
-                  <form>
-                    <div class="user-details">
-                      <div class="input-box">
-                        <span class="details">Name of the Job</span>
-                        <input type="text" placeholder="Enter Job" id="name">
-                      </div>
-                      <div class="input-box">
-                        <span class="details">Salary/Year</span>
-                        <input type="text" placeholder="Enter Job" id="name">
-                      </div>
-                      <div class="input-box">
-                        <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="name" value="Add Mandatory Skill">
-                      </div>
-                      <div class="input-box">
-                        <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="name" value="Add Soft Skill">
-                      </div>
-                    </div>
-                    <div class="divisionform">
-                        <div class="input-box">
-                            <span class="details">Job Description</span>
-                            <input type="text" placeholder="Enter Job" id="name">
-                        </div>
-                    </div>
-                    <div>
-                      <input type="radio" id="woker" name="contact" value="Worker" />
-                      <label for="woker">Remote Job</label>
-                
-                      <input type="radio" id="company" name="contact" value="Company" />
-                      <label for="company">Presencial Job</label>
-
-                      <input type="radio" id="company" name="contact" value="Company" />
-                      <label for="company">Hybrid</label>
-                    </div>
-
-                    <div class="user-details">
-                      <div class="input-box">
-                        <span class="details">State</span>
-                        <select name="cars" id="cars">
-                          <option value="volvo">Volvo</option>
-                          <option value="saab">Saab</option>
-                        </select>
-                      </div>
-                      <div class="input-box">
-                        <span class="details">City</span>
-                        <select name="cars" id="cars">
-                          <option value="volvo">Volvo</option>
-                          <option value="saab">Saab</option>
-                        </select>
-                      </div>
-                    </div>
-                    
-                    <div class="button">
-                      <input type="button" value="Sign up" id="signup">
-                    </div>
-                  </form>
-                </div>
-              </div>
-        </div>
-        <!--ENDS OFFER NEW JOB MODULE-->
-
-        <!--STARTS COMPANY PROFILE MODULE-->
+        <!--STARTS WORKER PROFILE MODULE-->
         <div class="module" style="margin-left:25%;padding:1px 16px; display:none;" id="profilemodule">
           <div class="container">
-            <div class="title">COMPANY PROFILE</div>
+            <div class="title">Worker PROFILE</div>
             <div class="content">
               <form>
                 <div class="user-details">
                   <div class="input-box">
-                    <span class="details">Full Name/Company Name</span>
+                    <span class="details">Full Name</span>
                     <input type="text" placeholder="Enter your Name" id="name">
                   </div>
                   <div class="input-box">
@@ -105,6 +39,15 @@
                     <span class="details">Phone Number</span>
                     <input type="number" placeholder="Enter your Number" id="phone">
                   </div>
+                  <div class="input-box">
+                    <span class="details">My Curriculum</span>
+                    <input type="button" value="Check my Curriculum"> 
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Update my Curriculum</span>
+                    <input type="button" value="Update My Curriculum"> 
+                  </div>
+
                 </div>
 
                 <div class="user-details">
@@ -131,7 +74,7 @@
             </div>
           </div>
         </div>
-      <!--ENDS COMPANY PROFILE MODULE-->
+      <!--ENDS WORKER PROFILE MODULE-->
 
       <!--STARTS CONTACT MODULE-->
       <div class="module" style="margin-left:25%;padding:1px 16px; display: none;" id="contactmodule">
@@ -220,6 +163,6 @@
       </div>
     </div>
   <!--ENDS ABOUT US MODULE-->
-    <script src="/js/company.js"></script>
+    <script src="/js/worker.js"></script>
   </body>
 </html>
