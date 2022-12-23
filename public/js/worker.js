@@ -4,10 +4,12 @@ window.addEventListener('DOMContentLoaded', function(){
     this.profilemodule = document.getElementById("profilemodule");
     this.contactmodule = document.getElementById("contactmodule");
     this.aboutusmodule = document.getElementById("aboutusmodule");
+    this.joboffersmodule = document.getElementById("joboffersmodule");
     //TABS
     this.profiletab = document.getElementById("profiletab");
     this.contacttab = document.getElementById("contacttab");
     this.abouttab = document.getElementById("abouttab");
+    this.jobofferstab = document.getElementById("joboffertab");
 
 
     //EVENTS
@@ -20,6 +22,10 @@ function changemodule(){
         case '#profile':
             this.profilemodule.style.display = "flex";
             this.profiletab.classList.add("active");
+        break;
+        case '#joboffer':
+            this.joboffersmodule.style.display = "block";
+            this.jobofferstab.classList.add("active");
         break;
         case '#contact':
             this.contactmodule.style.display = "flex";
@@ -37,8 +43,10 @@ function hidemodules(){
     this.profilemodule.style.display = "none";
     this.contactmodule.style.display = "none";
     this.aboutusmodule.style.display = "none";
+    this.joboffersmodule.style.display = "none";
 
     this.profiletab.classList.remove("active");
     this.contacttab.classList.remove("active");
     this.abouttab.classList.remove("active");
+    this.jobofferstab.classList.remove("active");
 }

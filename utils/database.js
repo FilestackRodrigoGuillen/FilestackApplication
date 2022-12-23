@@ -42,11 +42,12 @@ class database{
         }
         
         query = query.slice(0,-1);
-        query += ')'
+        query += ') RETURNING *'
         console.log(query);
         return this.client.query(query).then(result => {
             if(result){
                 console.log("success");
+                console.log(result);
                 return {status: "success", message: "Data Inserted into Database"}
             }else{
                 console.log("error");

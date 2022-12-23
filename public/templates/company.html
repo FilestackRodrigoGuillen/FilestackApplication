@@ -11,14 +11,14 @@
         <ul>
             <img src="./img/filestack.png">
             <li><a href="#profile" id="profiletab">Company Profile</a></li>
-            <li><a href="#joboffer" id="joboffertab">Job Offers</a></li>
-            <li><a class="active" href="#newoffer" id="newoffertab">Offer new Job</a></li>
+            <li><a class="active" href="#joboffer" id="joboffertab">Job Offers</a></li>
+            <li><a href="#newoffer" id="newoffertab">Offer new Job</a></li>
             <li><a href="#contact" id="contacttab">Contact</a></li>
             <li><a href="#about" id="abouttab">About</a></li>
         </ul>
 
         <!--STARTS OFFEER NEW JOB MODULE-->
-        <div class="module" style="margin-left:25%;padding:1px 16px; display:flex" id="jobmodule">
+        <div class="module" style="margin-left:25%;padding:1px 16px; display:none" id="jobmodule">
             <div class="container">
                 <div class="title">JOB OFFER</div>
                 <div class="content">
@@ -33,10 +33,10 @@
                         <input type="text" placeholder="Enter Job" id="name">
                       </div>
                       <div class="input-box">
-                        <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="name" value="Add Mandatory Skill">
+                        <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="mandatory" value="Add Mandatory Skill">
                       </div>
                       <div class="input-box">
-                        <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="name" value="Add Soft Skill">
+                        <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="soft" value="Add Soft Skill">
                       </div>
                     </div>
                     <div class="divisionform">
@@ -220,6 +220,79 @@
       </div>
     </div>
   <!--ENDS ABOUT US MODULE-->
+
+  <!--STARTS JOBOFFERS MODULE-->
+  <div class="cardmodule" style="margin-left:25%;padding:1px 16px; display: block;" id="joboffersmodule">
+    <div class="card">
+      <img src="/img/img_avatar.png" alt="Avatar" style="width:200px; heigth: 200px;">
+      <div class="cardcontainer">
+        <div style="width:500px">
+        <h1><b>John Doe</b></h1> 
+          <p>Architect & Engineer</p> 
+        </div>
+        <div  class="cutoff-text">
+          <p >
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was 
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="/img/img_avatar.png" alt="Avatar" style="width:200px; heigth: 200px;">
+      <div class="cardcontainer">
+        <div style="width:500px">
+        <h1><b>John Doe</b></h1> 
+          <p>Architect & Engineer</p> 
+        </div>
+        <div  class="cutoff-text">
+          <p >
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was 
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="/img/img_avatar.png" alt="Avatar" style="width:200px; heigth: 200px;">
+      <div class="cardcontainer">
+        <div style="width:500px">
+        <h1><b>John Doe</b></h1> 
+          <p>Architect & Engineer</p> 
+        </div>
+        <div  class="cutoff-text">
+          <p >
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was 
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <img src="/img/img_avatar.png" alt="Avatar" style="width:200px; heigth: 200px;">
+      <div class="cardcontainer">
+        <div style="width:500px">
+        <h1><b>John Doe</b></h1> 
+          <p>Architect & Engineer</p> 
+        </div>
+        <div  class="cutoff-text">
+          <p >
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was 
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--ENDS JOBOFFERS MODULE-->
+  <!--STARTS SKILL MODAL-->
+  <div class="modal modal-hidden">
+    <div class="modal__contents">
+      <div class="modal__close-bar">
+        <span>X</span>
+      </div>
+      <p>Name/Description of the skill</p>
+      <input type="text">
+      <input type="button" value="ADD SKILL">
+    </div>
+  </div>
+  <!--ENDS SKILL MODAL-->
     <script src="/js/company.js"></script>
   </body>
 </html>
