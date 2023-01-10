@@ -40,9 +40,11 @@ var controller = {
             for(let i in req.body.mandatoryskills){
                 var skill = new skillModel();
                 var name = req.body.mandatoryskills[i];
-                skill.joboffer_id = row.joboffer_id,
+                skill.data.joboffer_id = row.joboffer_id,
                 skill.data.name = name
                 skill.data.type = 'm';
+                console.log("AQUI ESTA LA SKILL QUE SE VA A INSERTAR");
+                console.log(skill);
                 connection.insert(skill);
             }
             for(let i in req.body.mandatoryskills){

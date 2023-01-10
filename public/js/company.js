@@ -27,6 +27,8 @@ window.addEventListener('DOMContentLoaded', function(){
     this.phone_companyinfo = document.getElementById("phone_companyinfo");
     this.update_companyinfo = document.getElementById("update_companyinfo");
 
+    console.log(localStorage.getItem('name'));
+
     this.name_companyinfo.value = localStorage.getItem('name');
     this.age_companyinfo.value = localStorage.getItem('age');
     this.email_companyinfo.value = localStorage.getItem('email');

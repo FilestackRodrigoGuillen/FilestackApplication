@@ -91,7 +91,7 @@ form .content label{
   padding-left: 5px;
 }
 
-form .field input[type="submit"]{
+form .field input[type="button"]{
   color: #fff;
   border: none;
   padding-left: 0;
