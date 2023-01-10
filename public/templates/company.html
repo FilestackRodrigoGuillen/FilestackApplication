@@ -26,11 +26,11 @@
                     <div class="user-details">
                       <div class="input-box">
                         <span class="details">Name of the Job</span>
-                        <input type="text" placeholder="Enter Job" id="name">
+                        <input type="text" placeholder="Enter Job" id="jobname">
                       </div>
                       <div class="input-box">
                         <span class="details">Salary/Year</span>
-                        <input type="text" placeholder="Enter Job" id="name">
+                        <input type="text" placeholder="Enter Job" id="jobsalary">
                       </div>
                       <div class="input-box">
                         <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="mandatory" value="Add Mandatory Skill">
@@ -38,43 +38,47 @@
                       <div class="input-box">
                         <input style="background-color: #ee4e25; color: #FFFFFF;" type="button" placeholder="Enter Job" id="soft" value="Add Soft Skill">
                       </div>
+                      <div class="input-box">
+                        <div class=skillcontainer id="mandatorycontainer">
+                        </div>
+                      </div>
+                      <div class="input-box">
+                        <div class=skillcontainer id="softcontainer">
+                        </div>
+                      </div>
                     </div>
                     <div class="divisionform">
                         <div class="input-box">
                             <span class="details">Job Description</span>
-                            <input type="text" placeholder="Enter Job" id="name">
+                            <input type="text" placeholder="Enter Job" id="jobdescription">
                         </div>
                     </div>
                     <div>
-                      <input type="radio" id="woker" name="contact" value="Worker" />
-                      <label for="woker">Remote Job</label>
+                      <input type="radio" id="remote" name="contact" value="remote"/>
+                      <label for="remote">Remote Job</label>
                 
-                      <input type="radio" id="company" name="contact" value="Company" />
-                      <label for="company">Presencial Job</label>
+                      <input type="radio" id="presencial" name="contact" value="presencial" />
+                      <label for="presencial">Presencial Job</label>
 
-                      <input type="radio" id="company" name="contact" value="Company" />
-                      <label for="company">Hybrid</label>
+                      <input type="radio" id="hybrid" name="contact" value="hybrid" />
+                      <label for="hybrid">Hybrid</label>
                     </div>
 
-                    <div class="user-details">
+                    <div class="user-details" id="locationdiv">
                       <div class="input-box">
                         <span class="details">State</span>
-                        <select name="cars" id="cars">
-                          <option value="volvo">Volvo</option>
-                          <option value="saab">Saab</option>
+                        <select name="states" id="states">
                         </select>
                       </div>
                       <div class="input-box">
                         <span class="details">City</span>
-                        <select name="cars" id="cars">
-                          <option value="volvo">Volvo</option>
-                          <option value="saab">Saab</option>
+                        <select name="cities" id="cities">
                         </select>
                       </div>
                     </div>
                     
                     <div class="button">
-                      <input type="button" value="Sign up" id="signup">
+                      <input type="button" value="Send Offer" id="sendoffer">
                     </div>
                   </form>
                 </div>
@@ -91,41 +95,37 @@
                 <div class="user-details">
                   <div class="input-box">
                     <span class="details">Full Name/Company Name</span>
-                    <input type="text" placeholder="Enter your Name" id="name">
+                    <input type="text" placeholder="Enter your Name" id="name_companyinfo">
                   </div>
                   <div class="input-box">
                     <span class="details">Age</span>
-                    <input type="number" placeholder="Enter your Age" id="age">
+                    <input type="number" placeholder="Enter your Age" id="age_companyinfo">
                   </div>
                   <div class="input-box">
                     <span class="details">Email</span>
-                    <input type="text" placeholder="Enter your Email" id="email">
+                    <input type="text" placeholder="Enter your Email" id="email_companyinfo">
                   </div>
                   <div class="input-box">
                     <span class="details">Phone Number</span>
-                    <input type="number" placeholder="Enter your Number" id="phone">
+                    <input type="number" placeholder="Enter your Number" id="phone_companyinfo">
                   </div>
                 </div>
 
                 <div class="user-details">
                   <div class="input-box">
                     <span class="details">State</span>
-                    <select name="cars" id="cars">
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
+                    <select name="states" id="states_company">
                     </select>
                   </div>
                   <div class="input-box">
                     <span class="details">City</span>
-                    <select name="cars" id="cars">
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
+                    <select name="cities" id="city_company">
                     </select>
                   </div>
                 </div>
 
                 <div class="button">
-                  <input type="button" value="UPDATE DATA" id="signup">
+                  <input type="button" value="UPDATE DATA" id="update_companyinfo">
                 </div>
               </form>
             </div>
@@ -226,7 +226,7 @@
     <div class="card">
       <img src="/img/img_avatar.png" alt="Avatar" style="width:200px; heigth: 200px;">
       <div class="cardcontainer">
-        <div style="width:500px">
+        <div style="width:300px">
         <h1><b>John Doe</b></h1> 
           <p>Architect & Engineer</p> 
         </div>
@@ -288,8 +288,8 @@
         <span>X</span>
       </div>
       <p>Name/Description of the skill</p>
-      <input type="text">
-      <input type="button" value="ADD SKILL">
+      <input type="text" id="skillname">
+      <input type="button" value="ADD SKILL" id="addskill">
     </div>
   </div>
   <!--ENDS SKILL MODAL-->

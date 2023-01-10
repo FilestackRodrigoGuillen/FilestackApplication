@@ -2,7 +2,7 @@ body {
     margin: 0;
   }
   
-  ul {
+  ul:not(element){
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -12,6 +12,13 @@ body {
     height: 100%;
     overflow: auto;
     font-size: 30px;
+  }
+
+  .skillcontainer{
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+    padding-left: 15px;
   }
 
   ul img {
@@ -213,6 +220,11 @@ body {
     display:-webkit-box;
     overflow: hidden;
     -webkit-line-clamp:var(--max-lines);
+
+  }
+
+  .offerinfodivstyle{
+    width: 500px;
   }
 
   .modal{
@@ -237,7 +249,7 @@ body {
     color: #FFFFFF;
     border-width: thick;
     border-style: solid;
-
+    max-width: 600px;
     
   }
 
@@ -252,6 +264,7 @@ body {
     background-color: #ee4e25;
     border-radius: 5px;
     margin-top: 5px;
+    display: flex;
   }
 
   .modal__close-bar{
@@ -264,3 +277,13 @@ body {
 
 
 
+@media (max-width: 1112px){
+  .cutoff-text{
+    width: auto;
+    max-width: 400px;
+  }
+
+  .offerinfodivstyle{
+    width: 300px;
+  }
+}

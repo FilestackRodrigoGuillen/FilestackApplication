@@ -1,14 +1,13 @@
 class skill{
-    constructor(joboffer_id,name,description,type,skill_id) {
+    constructor(name,type,joboffer_id,skill_id){
         this.table = "Skills"
         this.data = {
             skill_id : skill_id,
-            joboffer_id : joboffer_id,
+            type : type,
             name : name,
-            description : description,
-            type : type
+            joboffer_id : joboffer_id,
         }
     }
 }
 
-exports.module = skill;
+module.exports = skill;

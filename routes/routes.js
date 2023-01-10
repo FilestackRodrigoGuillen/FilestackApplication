@@ -11,6 +11,13 @@ routes.get("/signup",htmlcontroller.returnsignup);
 routes.post("/signupuser",databasecontroller.registeruser);
 routes.get("/company",htmlcontroller.returncompany);
 routes.get("/worker",htmlcontroller.returnworker);
+routes.post("/insertoffer",databasecontroller.insertoffer);
+routes.post("/getoffers",databasecontroller.getjoboffers);
+routes.post("/getskills",databasecontroller.getskills);
+routes.get("/getstates",databasecontroller.getStates);
+routes.get("/getcities",databasecontroller.getcities);
+routes.post("/userlogin",databasecontroller.login);
+routes.post("/updateuser",databasecontroller.updateuser);
 
 
 module.exports = routes;

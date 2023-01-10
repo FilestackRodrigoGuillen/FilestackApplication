@@ -25,19 +25,19 @@
                 <div class="user-details">
                   <div class="input-box">
                     <span class="details">Full Name</span>
-                    <input type="text" placeholder="Enter your Name" id="name">
+                    <input type="text" placeholder="Enter your Name" id="name_workerinfo">
                   </div>
                   <div class="input-box">
                     <span class="details">Age</span>
-                    <input type="number" placeholder="Enter your Age" id="age">
+                    <input type="number" placeholder="Enter your Age" id="age_workerinfo">
                   </div>
                   <div class="input-box">
                     <span class="details">Email</span>
-                    <input type="text" placeholder="Enter your Email" id="email">
+                    <input type="text" placeholder="Enter your Email" id="email_workerinfo">
                   </div>
                   <div class="input-box">
                     <span class="details">Phone Number</span>
-                    <input type="number" placeholder="Enter your Number" id="phone">
+                    <input type="number" placeholder="Enter your Number" id="phone_workerinfo">
                   </div>
                   <div class="input-box">
                     <span class="details">My Curriculum</span>
@@ -53,22 +53,18 @@
                 <div class="user-details">
                   <div class="input-box">
                     <span class="details">State</span>
-                    <select name="cars" id="cars">
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
+                    <select name="states" id="states">
                     </select>
                   </div>
                   <div class="input-box">
                     <span class="details">City</span>
-                    <select name="cars" id="cars">
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
+                    <select name="cities" id="cities">
                     </select>
                   </div>
                 </div>
 
                 <div class="button">
-                  <input type="button" value="UPDATE DATA" id="signup">
+                  <input type="button" value="UPDATE DATA" id="update_workerinfo">
                 </div>
               </form>
             </div>
@@ -166,7 +162,7 @@
 
   <!--STARTS JOBOFFERS MODULE-->
   <div class="cardmodule" style="margin-left:25%;padding:1px 16px; display: block;" id="joboffersmodule">
-    <div class="card">
+    <!--<div class="card">
       <img src="/img/factory.png" alt="Avatar" style="width:200px; heigth: 200px;">
       <div class="cardcontainer">
         <div style="width:500px">
@@ -221,9 +217,43 @@
             </p>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
   <!--ENDS JOBOFFERS MODULE-->
+  <!--STARTS OFFER MODAL-->
+  <div class="modal modal-hidden">
+    <div class="modal__contents">
+      <div class="modal__close-bar">
+        <span>X</span>
+      </div>
+      <p id="modal_jobname">JOB NAME: SALE'S ENGINEER</p>
+      <p id="modal_salary">SALARY: 123456</p>
+      <p>JOB DDESCRIPTION:</p>
+      <p id="modal_jobdescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was <p>
+      <div style= "display:flex; justify-content:space-evenly;">
+        <div id="modal_mandatoryskills">
+          <h4>Mandatory Skills</h4>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+          <p>dfssdfsdfsadfdasf</p>
+        </div>
+        <div id="modal_softskills">
+          <h4>Soft Skills</h4>
+          <p>dfssdfsdfsadfdasf</p>
+        </div>
+      </div>
+      <input type="button" value="POSTULATE" style="padding:10px;" id="postulate">
+    </div>
+  </div>
+  <!--ENDS OFFER MODAL-->
     <script src="/js/worker.js"></script>
   </body>
 </html>

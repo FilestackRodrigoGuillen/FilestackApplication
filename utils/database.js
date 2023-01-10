@@ -16,9 +16,25 @@ class database{
     }
 
     disconnect(){
-        this.client.release();
         this.client.end();
     }
+
+    //SELECTALL OBJECT
+    select(object,where){
+        console.log(object);
+        let query = 'SELECT * FROM "'+object.table+'" '+where;
+        console.log(query);
+        return this.client.query(query).then(result => {
+            if(result){
+                console.log("success");
+                return {result}
+            }else{
+                console.log("error");
+                return {status: "fail", message: "Data not inserted into Database"}
+            }
+        });
+    }
+
 
     //INSERT OBJECT
     insert(object){
@@ -35,6 +51,12 @@ class database{
         query += ') VALUES (';
         for (let value of values){
             if(typeof value === 'string'){
+                if(value.includes("'")){
+                    let index = value.indexOf("'");
+                    value = value.substring(0, index) +
+                    "'" +
+                    value.substring(index);
+                }
                 query += "'"+value+"',";
             }else{
                 query += value+',';
@@ -48,7 +70,7 @@ class database{
             if(result){
                 console.log("success");
                 console.log(result);
-                return {status: "success", message: "Data Inserted into Database"}
+                return {status: "success", message: "Data Inserted into Database",result}
             }else{
                 console.log("error");
                 return {status: "fail", message: "Data not inserted into Database"}
@@ -81,13 +103,16 @@ class database{
             query += object.data[objkey];
         }
         console.log(query);
-        this.client.query(query).then(result => {
+        return this.client.query(query).then(result => {
             if(result){
-                console.log("Dato actualizado");
+                console.log("success");
+                console.log(result);
+                return {status: "success", message: "Data Inserted into Database",result}
             }else{
-                console.log("ERROR");
+                console.log("error");
+                return {status: "fail", message: "Data not inserted into Database"}
             }
-        })
+        });
     }
     
 
