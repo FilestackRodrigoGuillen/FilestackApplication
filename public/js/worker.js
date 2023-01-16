@@ -119,7 +119,7 @@ function updatedata(){
 }
 
 async function updaterequest(user){
-    const response = await fetch("http://192.168.0.5:3900/updateuser",{
+    const response = await fetch("http://localhost:3900/updateuser",{
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -233,7 +233,7 @@ async function modalinfo(index){
 }
 
 async function getStates(){
-    const response = await fetch("http://192.168.0.5:3900/getstates",{
+    const response = await fetch("http://localhost:3900/getstates",{
         method: 'GET',
         headers: {
         'Accept': 'application/json',
@@ -267,9 +267,9 @@ function cities(value){
 }
 
 async function getcities(value){
-    url = "http://192.168.0.5:3900/getcities?state_code="+value
+    url = "http://localhost:3900/getcities?state_code="+value
     console.log(url);
-    const response = await fetch("http://192.168.0.5:3900/getcities?state_code="+value,{
+    const response = await fetch("http://localhost:3900/getcities?state_code="+value,{
         method: 'GET',
         headers: {
         'Accept': 'application/json',
@@ -299,7 +299,7 @@ async function getcities(value){
 
 async function getjoboffers(){
     console.log("SELECT");
-    const response = await fetch("http://192.168.0.5:3900/getoffers", {
+    const response = await fetch("http://localhost:3900/getoffers", {
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -323,7 +323,7 @@ async function getjoboffers(){
 
 async function getskills(joboffer_id){
     console.log("EL ID ES "+joboffer_id);
-    const response = await fetch("http://192.168.0.5:3900/getskills", {
+    const response = await fetch("http://localhost:3900/getskills", {
         method: 'POST',
         headers: {
         'Accept': 'application/json',

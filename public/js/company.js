@@ -121,7 +121,7 @@ function updatedata(){
 }
 
 async function updaterequest(user){
-    const response = await fetch("http://192.168.0.5:3900/updateuser",{
+    const response = await fetch("http://localhost:3900/updateuser",{
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -144,7 +144,7 @@ async function updaterequest(user){
 
 async function getStates(){
     console.log("GET STATES");
-    const response = await fetch("http://192.168.0.5:3900/getstates",{
+    const response = await fetch("http://localhost:3900/getstates",{
         method: 'GET',
         headers: {
         'Accept': 'application/json',
@@ -181,9 +181,9 @@ function cities(value){
 }
 
 async function getcities(value){
-    url = "http://192.168.0.5:3900/getcities?state_code="+value
+    url = "http://localhost:3900/getcities?state_code="+value
     console.log(url);
-    const response = await fetch("http://192.168.0.5:3900/getcities?state_code="+value,{
+    const response = await fetch("http://localhost:3900/getcities?state_code="+value,{
         method: 'GET',
         headers: {
         'Accept': 'application/json',
@@ -215,7 +215,7 @@ async function getcities(value){
 }
 
 async function insertoffer(offerobject){
-    const response = await fetch("http://192.168.0.5:3900/insertoffer",{
+    const response = await fetch("http://localhost:3900/insertoffer",{
         method: 'POST',
         headers: {
         'Accept': 'application/json',

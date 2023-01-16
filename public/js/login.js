@@ -24,7 +24,7 @@ async function loginpost(email,password){
         email:email,
         password:password
     }
-    const response = await fetch("http://192.168.0.5:3900/userlogin",{
+    const response = await fetch("http://localhost:3900/userlogin",{
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -50,9 +50,9 @@ async function loginpost(email,password){
             console.log(localStorage.getItem('city'));
 
             if(localStorage.getItem('type') == 'w'){
-                window.location.href = 'http://192.168.0.5:3900/worker';
+                window.location.href = 'http://localhost:3900/worker';
             }else if(localStorage.getItem('type') == 'c'){
-                window.location.href = 'http://192.168.0.5:3900/company';
+                window.location.href = 'http://localhost:3900/company';
             }
             
               
