@@ -156,30 +156,4 @@ class database{
     }
     
 }
-
-/*var database = {
-    conectdatabase(){
-        const { Client } = require('pg');
-        const connectionData = {
-            user: 'postgres',
-            host: 'localhost',
-            database: 'db_filestack',
-            password: 'fermodyl5',
-            port: 5432,
-        }
-        const client = new Client(connectionData)
-        client.connect();
-    },
-    create(){
-        client.query('SELECT * FROM "Users"').then(response => {
-        console.log(response.rows)
-        client.end()
-        })
-        .catch(err => {
-            console.log(err)
-            client.end()
-        })
-    }
-}*/
-
 module.exports = database;
