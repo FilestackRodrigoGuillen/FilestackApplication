@@ -14,7 +14,10 @@ var controller = {
     },
     returnworker:(requ,res) => {
         return res.status(200).sendFile(path.resolve(__dirname,'../public/templates/worker.html'));
-    }
+    },
+    returnhtml:(req,res) => {
+        return res.status(200).sendFile(path.resolve(__dirname,'../public/templates/html.html'));
+    },
 }
 
 module.exports = controller;

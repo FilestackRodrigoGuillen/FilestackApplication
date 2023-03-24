@@ -22,10 +22,13 @@ app.use((req, res, next) => {
 
 //ROUTES
 var routes = require("./routes/routes.js");
+const { type } = require('os');
 app.use('/',routes);
 
 //DEFINE STATIC FILES
-app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static(path.join(__dirname,"public"),{
+    type: 'module'
+  }))
 
 //EXPORT MODULE
 module.exports = app;

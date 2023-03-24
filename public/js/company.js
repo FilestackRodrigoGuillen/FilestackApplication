@@ -34,6 +34,8 @@ window.addEventListener('DOMContentLoaded', function(){
     this.email_companyinfo.value = localStorage.getItem('email');
     this.phone_companyinfo.value = localStorage.getItem('phone');
 
+    document.querySelector('.modaloffer__close-bar span').addEventListener('click',()=>this.toogleoffermodal());
+
 
     
     ///////////////////////////////VARIABLES/////////////
@@ -50,6 +52,7 @@ window.addEventListener('DOMContentLoaded', function(){
         document.querySelector('.modal').classList.toggle('modal-hidden');
         this.skilltype = type;
     };
+    
 
     const placemodal = (type) => {
         if(type === 'r'){
@@ -79,8 +82,16 @@ window.addEventListener('DOMContentLoaded', function(){
     this.update_companyinfo.addEventListener('click',()=> this.updatedata());
 
 
+    this.workeroffersarray = ["adsfads","dsafdsf","dasfdsfafdsa","asdfdsffds","dsfadsafadsf"];
+    this.getWokerOfferCardInfo();
+
+
     
 });
+
+function toogleoffermodal(){
+    document.querySelector('.offermodal').classList.toggle('offermodal-hidden');
+}
 
 function sendoffer(){
     if(this.et_jabdescription.value && this.et_name.value && this.et_salary.value && this.type){
@@ -222,7 +233,21 @@ async function insertoffer(offerobject){
         'Content-Type': 'application/json'
         },
         body: JSON.stringify(offerobject),
-    })
+    }).then(()=>{
+        alert("JOB POSTED");
+        const mcontainer = document.getElementById("mandatorycontainer");
+        const scontainer = document.getElementById("softcontainer");
+        mcontainer.innerHTML = '';
+        scontainer.innerHTML = '';
+        this.et_name.value = '';
+        this.et_salary.value = '';
+        this.et_jabdescription.value = '';
+        document.querySelector('#remote').checked=false
+        document.querySelector('#presencial').checked=false
+        document.querySelector('#hybrid').checked=false
+
+    }
+    );
 }
 
 function faddskill(){
@@ -297,4 +322,89 @@ function hidemodules(){
     this.contacttab.classList.remove("active");
     this.abouttab.classList.remove("active");
     this.jobofferstab.classList.remove("active");
+}
+
+async function getWokerOfferCardInfo(){
+    const response = await fetch("http://localhost:3900/getworkeroffercardsinfo", {
+        method: 'GET',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+    });
+    response.json().then(data => {
+        
+        this.workeroffersarray = data;
+        //console.log(data);
+        this.addWorkerOfferCards();
+    })
+}
+
+function modalinfo(index){
+    this.toogleoffermodal();
+    let workeroffer = this.workeroffersarray[index];
+    let name = document.getElementById("offermodal_jobname");
+    let email = document.getElementById("offermodal_email");
+    let phone = document.getElementById("offermodal_phone");
+    let btn_check_curriculum = document.getElementById("worker_curriculum");
+    let btn_check_video = document.getElementById("worker_video");
+    let btn_check_photo = document.getElementById("worker_photo");
+    name.textContent = "WORKER'S NAME: "+workeroffer.name;
+    email.textContent = "EMAIL: "+workeroffer.email;
+    phone.textContent = "PHONE: "+workeroffer.phone;
+
+    //EVENTS
+    btn_check_curriculum.addEventListener("click",()=>this.openLinkInNewTab("https://cdn.filestackcontent.com/slide/"+workeroffer.curriculum_handler));
+    btn_check_video.addEventListener("click",()=>this.openLinkInNewTab(workeroffer.video));
+    btn_check_photo.addEventListener("click",()=>this.openLinkInNewTab(workeroffer.photo));
+}
+
+function openLinkInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+  }
+
+function addWorkerOfferCards(){
+    for (const index in this.workeroffersarray){
+        let workeroffer = this.workeroffersarray[index];
+        console.log(workeroffer);
+        //GENERATING ELEMENTS
+        var CardsContainer = document.getElementById("workeroffersmodule");
+        //CARD
+        const card = document.createElement("div");
+        card.className = "card";
+        //IMAGE
+        const img = document.createElement("img");
+        img.src = workeroffer.photo;
+        img.style.width = "200px"
+        img.style.height = "200px"
+        //CARD CONTAINER
+        const cardContainer = document.createElement("div");
+        cardContainer.className = "cardcontainer"
+        //OFFER INFO
+        const offerInfoDiv = document.createElement("div");
+        offerInfoDiv.className = "offerinfodivstyle";
+        const Name = document.createElement("h1");
+        Name.textContent = workeroffer.name;
+        const phone = workeroffer.phone;
+        const email = document.createElement("h4")
+        email.textContent = workeroffer.email;
+        phone.textContent = workeroffer.phone;
+        email.textContent = workeroffer.email;
+        offerInfoDiv.append(Name);
+        offerInfoDiv.append(phone);
+        offerInfoDiv.append(email);
+
+        cardContainer.append(offerInfoDiv);
+
+        card.append(img);
+        card.append(cardContainer);
+        card.addEventListener("click",()=>{
+            this.modalinfo(index);  
+        });
+
+        CardsContainer.appendChild(card);
+    }
+
+    
 }

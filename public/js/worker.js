@@ -13,30 +13,38 @@ window.addEventListener('DOMContentLoaded', function(){
     this.jobofferstab = document.getElementById("joboffertab");
     //ELEMENTS
     this.btn_postulate = document.getElementById("postulate");
+    this.btn_checkCurriculum = document.getElementById("btn_checkCurriculum");
+    this.btn_updateCurriculum = document.getElementById("btn_updateCurriculum")
 
     this.name_workerinfo = document.getElementById("name_workerinfo");
     this.age_workerinfo = document.getElementById("age_workerinfo");
     this.email_workerinfo = document.getElementById("email_workerinfo");
     this.phone_workerinfo = document.getElementById("phone_workerinfo");
     this.update_workerinfo = document.getElementById("update_workerinfo");
+    
 
 
     this.name_workerinfo.value = localStorage.getItem('name');
     this.age_workerinfo.value = localStorage.getItem('age');
     this.email_workerinfo.value = localStorage.getItem('email');
     this.phone_workerinfo.value = localStorage.getItem('phone');
+    
 
-    console.log(localStorage.getItem('phone'));
+    //console.log(localStorage.getItem('phone'));
 
 
     //VARIABLES
     this.selectedstate = "";
     this.selectedcity = "";
+    this.jobofferselected = 0;
 
     ////////////////////////////////EVENTS
     window.addEventListener('hashchange', () => this.changemodule());
     document.querySelector('.modal__close-bar span').addEventListener('click',tooglemodal);
-    this.btn_postulate.addEventListener('click',()=>{this.postulate()});
+    document.querySelector('.curriculummodal__close-bar span').addEventListener('click',tooglecurriculummodal);
+    this.btn_postulate.addEventListener('click',()=>{this.apply(1)});
+    this.btn_checkCurriculum.addEventListener('click',()=>{this.checkCurriculum()});
+    this.btn_updateCurriculum.addEventListener('click',()=>{this.updateCurriculum()});
 
     this.joboffersarray = [];
     this.skillsarray = [];
@@ -45,17 +53,159 @@ window.addEventListener('DOMContentLoaded', function(){
     this.update_workerinfo.addEventListener('click',()=> this.updatedata());
 
     this.getjoboffers();
-
-    
 });
+
+function updateCurriculum(){
+    var options ={
+        "accept": [
+            ".pdf",
+        ],
+        "fromSources": [
+            "local_file_system",
+            "url"
+        ],
+        "storeTo" : {
+            workflows: ["7e85c2e7-c50a-4349-b0fe-cd4732d57612"]
+        },
+        onUploadDone: (res) => {
+            let user = {};
+            user.curriculum = res.filesUploaded[0].url;
+            user.id = localStorage.getItem('userid');
+            localStorage.setItem('curriculum',res.filesUploaded[0].url);
+            this.updaterequest(user);
+        },
+    };
+    this.runpicker(options)
+    
+}
+function checkCurriculum(){
+    this.tooglecurriculummodal();
+    let iFrameWindow = document.getElementById("curriculum_iframe");
+    let url = "https://cdn.filestackcontent.com/preview/"+localStorage.getItem("curriculum_handler");
+    iFrameWindow.src = url;
+}
 
 function tooglemodal(type){
     document.querySelector('.modal').classList.toggle('modal-hidden');
 
 };
 
-function postulate(){
-    tooglemodal();
+function tooglecurriculummodal(){
+    document.querySelector('.curriculum_modal').classList.toggle('curriculum_modal-hidden');
+
+};
+
+function tooglepickermodal(){
+    document.querySelector('.pickermodal').classList.toggle('pickermodal-hidden');
+}
+
+function apply(step){
+    if(step===1){
+        tooglemodal();
+        tooglepickermodal();
+    }
+    let div_selCurriculumOptions = document.getElementById("buttonsSelectCurriculum");
+    let div_pickerwindow = document.getElementById("pickerwindow");
+    let btn_myCurriculum = document.getElementById("btn_uploadedCurriculum");
+    let btn_newCurriculum = document.getElementById("btn_uploadNewCurriculum");
+    let filepicker_title = document.getElementById("file_title_description");
+    var options = {}
+    if(step === 1){
+        div_pickerwindow.style.display = "none";
+        btn_newCurriculum.addEventListener("click", ()=>{
+            div_pickerwindow.style.display = "block";
+            div_selCurriculumOptions.style.display = "none";
+            var options ={
+                onUploadDone: (res) => {
+                    let offer = this.genOffer(localStorage.getItem('userid'),this.jobofferselected,"curriculum",res.filesUploaded[0].url);
+                    updateWorkerOffer(offer).then(()=>{
+                        var myDiv = document.getElementById("inline");
+                        myDiv.innerHTML = "";
+                        filepicker_title.innerText = "Please Upload your video";
+                        apply(2)
+                    });
+                }, 
+                "accept": [
+                    ".pdf"
+                ],
+                "fromSources": [
+                    "local_file_system",
+                    "url"
+                ],
+                displayMode: 'inline',
+                container: '#inline',
+            };
+            this.runpicker(options);
+        });
+        btn_myCurriculum.addEventListener("click", ()=>{
+            let offer = this.genOffer(localStorage.getItem('userid'),this.jobofferselected,"curriculum",localStorage.getItem('curriculum'));
+            updateWorkerOffer(offer).then(()=>{
+                filepicker_title.innerText = "Please Upload your video";
+                this.apply(2);
+            });
+                
+        })
+    }else if(step === 2){
+        var options ={
+            onUploadDone: (res) => {
+                let offer = this.genOffer(localStorage.getItem('userid'),this.jobofferselected,"video",res.filesUploaded[0].url);
+                updateWorkerOffer(offer).then(()=>{
+                    var myDiv = document.getElementById("inline");
+                    myDiv.innerHTML = "";
+                    filepicker_title.innerText = "Please Upload your photo";
+                    apply(3)
+                });
+            }, 
+            "accept": [
+                "video/*"
+            ],
+            "fromSources": [
+                "local_file_system",
+                "webcam"
+            ],
+            displayMode: 'inline',
+            container: '#inline',
+        };
+        this.runpicker(options);
+    }else if(step === 3){
+        var options ={
+            onUploadDone: (res) => {
+                let offer = this.genOffer(localStorage.getItem('userid'),this.jobofferselected,"photo",res.filesUploaded[0].url);
+                updateWorkerOffer(offer).then(()=>{
+                    var myDiv = document.getElementById("inline");
+                    myDiv.innerHTML = "";
+                    tooglepickermodal();
+                });
+            }, 
+      
+            "accept": [
+                "image/*"
+            ],
+            "fromSources": [
+                "local_file_system",
+                "webcam"
+            ],
+            displayMode: 'inline',
+            container: '#inline',
+            
+      };
+      this.runpicker(options);
+    }
+};
+
+function genOffer(worker_id,joboffer_id,tag,url){
+    let offer = {}
+    offer.joboffer_id = joboffer_id;
+    offer.worker_id = worker_id;
+    if(tag === "video"){
+        offer.video = url;
+    }else if(tag === "photo"){
+        offer.photo = url;
+    }else if(tag === "curriculum"){
+        offer.curriculum = url
+    }
+    return offer;
+
 }
 
 function changemodule(){
@@ -82,7 +232,7 @@ function changemodule(){
             this.abouttab.classList.add("active");
         break;
     }
-    console.log(location.hash);
+    //console.log(location.hash);
 }
 
 
@@ -181,7 +331,7 @@ function addJobOfferCards(){
         card.append(img);
         card.append(cardContainer);
         card.addEventListener("click",()=>{
-            console.log(index)
+            //console.log(index)
             this.modalinfo(index);
         });
 
@@ -199,6 +349,7 @@ async function modalinfo(index){
     salary.textContent = "SALARY : " +this.joboffersarray[index].salary;
     description.textContent = this.joboffersarray[index].description;
     this.tooglemodal();
+    this.jobofferselected = this.joboffersarray[index].joboffer_id;
     var data = await this.getskills(this.joboffersarray[index].joboffer_id);
     
     while (mandatory_skills.hasChildNodes()) {
@@ -219,12 +370,10 @@ async function modalinfo(index){
             let p = document.createElement("p");
             p.textContent = skill.name
             if(skill.type === "m"){
-                console.log("mandatory");
-                console.log(p)
+                //console.log("mandatory");
                 mandatory_skills.append(p);
             }else if(skill.type === "s"){
-                console.log("soft");
-                console.log(p)
+                //console.log("soft");
                 soft_skills.append(p);
             }
         }
@@ -251,7 +400,7 @@ async function getStates(){
         }
         select.addEventListener("change", () => this.cities(select.value));
         if(localStorage.getItem('state')){
-            console.log("GETTING CITIES");
+            //console.log("GETTING CITIES");
             select.value = localStorage.getItem('state');
             this.selectedstate = localStorage.getItem('state');
             getcities(localStorage.getItem('state'));
@@ -268,7 +417,7 @@ function cities(value){
 
 async function getcities(value){
     url = "http://localhost:3900/getcities?state_code="+value
-    console.log(url);
+    //console.log(url);
     const response = await fetch("http://localhost:3900/getcities?state_code="+value,{
         method: 'GET',
         headers: {
@@ -289,7 +438,7 @@ async function getcities(value){
             cities.add(opt); 
         }
         if(localStorage.getItem('city') !== 'not'){
-            console.log("Seeting city");
+            //console.log("Seeting city");
             cities.value = localStorage.getItem('city');
             this.selectedcity = localStorage.getItem('city');
         }
@@ -298,7 +447,7 @@ async function getcities(value){
 }
 
 async function getjoboffers(){
-    console.log("SELECT");
+    //console.log("SELECT");
     const response = await fetch("http://localhost:3900/getoffers", {
         method: 'POST',
         headers: {
@@ -306,23 +455,17 @@ async function getjoboffers(){
         'Content-Type': 'application/json'
         },
         body: JSON.stringify({}),
-        /*body: `{
-        "Id": 78912,
-        "Customer": "Jason Sweet",
-        "Quantity": 1,
-        "Price": 18.00
-        }`,*/
     });
     response.json().then(data => {
         
         this.joboffersarray = data;
-        console.log(data);
+        //console.log(data);
         this.addJobOfferCards();
     })
 }
 
 async function getskills(joboffer_id){
-    console.log("EL ID ES "+joboffer_id);
+    //console.log("EL ID ES "+joboffer_id);
     const response = await fetch("http://localhost:3900/getskills", {
         method: 'POST',
         headers: {
@@ -331,14 +474,30 @@ async function getskills(joboffer_id){
         },
         body: JSON.stringify({joboffer_id}),
     });
-    /*await response.json().then(data => {
-        console.log(data);
-        this.skillsarray = data;
-        return data
-
-    })*/
 
     var data = await response.json();
-    console.log(data);
+    //console.log(data);
     return data;
+}
+
+async function updateWorkerOffer(jobObject){
+    const response = await fetch("http://localhost:3900/updatewoffers", {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jobObject),
+    });
+
+    var data = await response.json();
+    //console.log(data);
+    return data;
+}
+
+function runpicker(options){
+    console.log("OPTIONS");
+    console.log(options)
+    client = filestack.init("AKp74eAn9QHCgd9fTQeNCz");
+    client.picker(options).open();
 }

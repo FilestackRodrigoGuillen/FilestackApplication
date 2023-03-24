@@ -7,6 +7,8 @@ var stateModel = require("../models/state");
 var cityModel = require("../models/city");
 const { response } = require("express");
 const city = require("../models/city");
+var workerOfferModel = require("../models/worker_offer");
+var security = require("../utils/security");
 
 
 var controller = {
@@ -24,8 +26,6 @@ var controller = {
             connection.disconnect();
             return res.status(200).send(result);
         });
-        //connection.update(user,"name","user_id");
-        //database.create();
     },
     insertoffer :(req,res) => {
         var connection = new database();
@@ -43,7 +43,6 @@ var controller = {
                 skill.data.joboffer_id = row.joboffer_id,
                 skill.data.name = name
                 skill.data.type = 'm';
-                console.log("AQUI ESTA LA SKILL QUE SE VA A INSERTAR");
                 console.log(skill);
                 connection.insert(skill);
             }
@@ -111,6 +110,7 @@ var controller = {
         user.data.phone = req.body.phone;
         user.data.state = req.body.state;
         user.data.city = req.body.city;
+        user.data.curriculum = req.body.curriculum;
         user.data.userid = parseInt(req.body.id);
         var id = parseInt(req.body.id);
         console.log(user);
@@ -119,6 +119,63 @@ var controller = {
             console.log(result);
         });
         return res.status(200).send({ok:"ok"});
+    },
+    virusscan: (req,res) => {
+        console.log("VIRUS SCANNER");
+        console.log(res);
+    },
+    updatewoffers:(req,res) => {
+        console.log(req.body.curriculum);
+        console.log(req.body.video);
+        console.log(req.body.photo);
+        let workerOffer = new workerOfferModel()
+        workerOffer.data.worker_id = parseInt(req.body.worker_id);
+        workerOffer.data.joboffer_id = parseInt(req.body.joboffer_id);
+        var connection = new database();
+        connection.connect();
+        var response = connection.select(workerOffer,"WHERE joboffer_id="+workerOffer.data.joboffer_id+" and worker_id="+workerOffer.data.worker_id ).then(result =>{
+            console.log(result.result.rows);
+            if(result.result.rows.length>0){
+                console.log(result.result.rows);
+                if(req.body.curriculum !== undefined){
+                    console.log("curriculum");
+                    workerOffer.data.curriculum = req.body.curriculum
+                }else if(req.body.video !== undefined){
+                    console.log("video");
+                    workerOffer.data.video = req.body.video
+                }else if(req.body.photo !== undefined){
+                    console.log("photo");
+                    workerOffer.data.photo = req.body.photo
+                }
+                workerOffer.data.workeroffer_id = result.result.rows[0].workeroffer_id;
+                connection.update(workerOffer,"workeroffer_id",workerOffer.data.workeroffer_id).then(result => {
+                    return res.status(200).send({"response":"Already Inserted"});
+                });
+            }else{
+                console.log("VACIO");
+                workerOffer.data.curriculum = req.body.curriculum
+                var response =  connection.insert(workerOffer).then(result =>{
+                    return res.status(200).send({"response":"Already Inserted"});
+                });
+            }
+            
+        });
+    },
+
+    getworkeroffercardsinfo:(req,res) =>{
+        var connection = new database();
+        connection.connect();
+        let workeroffer = new workerOfferModel();
+        var response = connection.select(workeroffer, ' JOIN "Users" ON "WorkerOffers"."worker_id" = "Users"."userid"').then(result =>{
+            return res.status(200).send(result.result.rows);
+        });
+    },
+
+    getSecurityParams:(req,res) =>{
+        var sec = new security();
+        var clientOptions = sec.generatesecurity();
+        console.log(clientOptions);
+        return res.status(200).send(clientOptions);
     }
 }
 

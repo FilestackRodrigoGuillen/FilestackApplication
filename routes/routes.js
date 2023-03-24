@@ -18,6 +18,9 @@ routes.get("/getstates",databasecontroller.getStates);
 routes.get("/getcities",databasecontroller.getcities);
 routes.post("/userlogin",databasecontroller.login);
 routes.post("/updateuser",databasecontroller.updateuser);
-
+routes.post("/updatewoffers",databasecontroller.updatewoffers);
+routes.post("/virusdetection",databasecontroller.virusscan);
+routes.get("/getworkeroffercardsinfo",databasecontroller.getworkeroffercardsinfo);
+routes.get("/security",databasecontroller.getSecurityParams);
 
 module.exports = routes;

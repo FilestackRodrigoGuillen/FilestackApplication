@@ -43,6 +43,9 @@ async function loginpost(email,password){
             localStorage.setItem('age', data[0].age);
             localStorage.setItem('state', data[0].state);
             localStorage.setItem('city', data[0].city);
+            localStorage.setItem('curriculum',data[0].curriculum);
+            localStorage.setItem('curriculum_handler',data[0].curriculum_handler);
+
 
 
 

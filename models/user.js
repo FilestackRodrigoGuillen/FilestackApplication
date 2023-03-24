@@ -1,5 +1,5 @@
 class user{
-    constructor(name,state,city, age,email,phone,password,type,userid){
+    constructor(name,state,city, age,email,phone,password,type,curriculum,userid){
         this.table = "Users"
         this.data = {
             userid : userid,
@@ -10,7 +10,8 @@ class user{
             password : password,
             type : type,
             state : state,
-            city : city
+            city : city,
+            curriculum:curriculum
         }
     }
     
