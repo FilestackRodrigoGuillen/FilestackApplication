@@ -496,8 +496,25 @@ async function updateWorkerOffer(jobObject){
 }
 
 function runpicker(options){
-    console.log("OPTIONS");
     console.log(options)
-    client = filestack.init("AKp74eAn9QHCgd9fTQeNCz");
-    client.picker(options).open();
+    getPolicyAndSignature().then((data)=>{
+        console.log(getPolicyAndSignature);
+        client = filestack.init("AKp74eAn9QHCgd9fTQeNCz",data);
+        client.picker(options).open();
+    })
+    
+}
+
+async function getPolicyAndSignature(){
+    const response = await fetch("http://localhost:3900/security", {
+        method: 'GET',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+    });
+
+    var data = await response.json();
+    console.log(data);
+    return data;
 }

@@ -4,7 +4,7 @@ class database{
             user: 'postgres',
             host: 'localhost',
             database: 'db_filestack',
-            password: '**********',
+            password: 'fermodyl5',
             port: 5432,
         };
         const { Client } = require('pg');
