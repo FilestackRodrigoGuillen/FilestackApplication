@@ -8,7 +8,7 @@ class security{
 
         const secret = 'QWJCSTHHDJANHAW4ODDRD3IPTE';
     
-        const call = ['pick', 'read', 'convert', 'store', 'runWorkflow'];
+        const call = ['pick', 'read', 'convert', 'store', 'runWorkflow','remove'];
         const expiry = Math.floor(Date.now() / 1000) + 3600;
         
         const policy = {
@@ -29,7 +29,6 @@ class security{
         };
 
         return clientOptions;
-    
     }
 }
 

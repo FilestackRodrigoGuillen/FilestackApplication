@@ -79,10 +79,13 @@ function updateCurriculum(){
     
 }
 function checkCurriculum(){
-    this.tooglecurriculummodal();
-    let iFrameWindow = document.getElementById("curriculum_iframe");
-    let url = "https://cdn.filestackcontent.com/preview/"+localStorage.getItem("curriculum_handler");
-    iFrameWindow.src = url;
+    this.getPolicyAndSignature().then((data)=>{
+        this.tooglecurriculummodal();
+        let iFrameWindow = document.getElementById("curriculum_iframe");
+        let url = "https://cdn.filestackcontent.com/preview/"+"security=policy:"+data.security.policy+",signature:"+data.security.signature+"/"+localStorage.getItem("curriculum_handler");
+        iFrameWindow.src = url;
+    })
+    
 }
 
 function tooglemodal(type){
@@ -117,6 +120,7 @@ function apply(step){
             div_selCurriculumOptions.style.display = "none";
             var options ={
                 onUploadDone: (res) => {
+                    console.log(res);
                     let offer = this.genOffer(localStorage.getItem('userid'),this.jobofferselected,"curriculum",res.filesUploaded[0].url);
                     updateWorkerOffer(offer).then(()=>{
                         var myDiv = document.getElementById("inline");
@@ -128,6 +132,9 @@ function apply(step){
                 "accept": [
                     ".pdf"
                 ],
+                storeTo: {
+                    workflows: ["1bfa155a-9483-4390-a26a-4918902d27fe"]
+                },
                 "fromSources": [
                     "local_file_system",
                     "url"
@@ -163,6 +170,9 @@ function apply(step){
                 "local_file_system",
                 "webcam"
             ],
+            storeTo: {
+                workflows: ["658cbf1a-6cee-4d84-aad3-da5e19661c4c"]
+            },
             displayMode: 'inline',
             container: '#inline',
         };
@@ -185,6 +195,9 @@ function apply(step){
                 "local_file_system",
                 "webcam"
             ],
+            storeTo: {
+                workflows: ["454c97d1-0f84-4162-b774-586c73382f99"]
+            },
             displayMode: 'inline',
             container: '#inline',
             
@@ -496,12 +509,13 @@ async function updateWorkerOffer(jobObject){
 }
 
 function runpicker(options){
-    console.log(options)
-    getPolicyAndSignature().then((data)=>{
+    this.getPolicyAndSignature().then((data)=>{
         console.log(getPolicyAndSignature);
         client = filestack.init("AKp74eAn9QHCgd9fTQeNCz",data);
         client.picker(options).open();
     })
+    
+    
     
 }
 

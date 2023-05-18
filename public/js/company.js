@@ -354,9 +354,16 @@ function modalinfo(index){
     phone.textContent = "PHONE: "+workeroffer.phone;
 
     //EVENTS
-    btn_check_curriculum.addEventListener("click",()=>this.openLinkInNewTab("https://cdn.filestackcontent.com/slide/"+workeroffer.curriculum_handler));
-    btn_check_video.addEventListener("click",()=>this.openLinkInNewTab(workeroffer.video));
-    btn_check_photo.addEventListener("click",()=>this.openLinkInNewTab(workeroffer.photo));
+    btn_check_curriculum.addEventListener("click",()=>this.generatelink("https://cdn.filestackcontent.com/preview/",workeroffer.curriculum_handler));
+    btn_check_video.addEventListener("click",()=>this.generatelink("https://cdn.filestackcontent.com/",workeroffer.video_handler));
+    btn_check_photo.addEventListener("click",()=>this.generatelink("https://cdn.filestackcontent.com/",workeroffer.photo_handler));
+}
+
+function generatelink(link,handler){
+    this.getPolicyAndSignature().then((data)=>{
+       let url = link+"security=policy:"+data.security.policy+",signature:"+data.security.signature+"/"+handler
+       this.openLinkInNewTab(url)
+    })
 }
 
 function openLinkInNewTab(url) {
@@ -404,6 +411,21 @@ function addWorkerOfferCards(){
         });
 
         CardsContainer.appendChild(card);
+    }
+
+
+    async function getPolicyAndSignature(){
+        const response = await fetch("http://localhost:3900/security", {
+            method: 'GET',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+        });
+    
+        var data = await response.json();
+        console.log(data);
+        return data;
     }
 
     
